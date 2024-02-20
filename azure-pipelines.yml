@@ -7,7 +7,13 @@ trigger:
 - master
 
 pool:
-  vmImage: ubuntu-latest
+  name: Default
+- task: DownloadBuildArtifacts@1
+  inputs:
+    buildType: 'current'
+    downloadType: 'single'
+    artifactName: 'CICD_Demo'
+    downloadPath: '$(System.ArtifactsDirectory)'
 
 steps:
 - task: Maven@3
